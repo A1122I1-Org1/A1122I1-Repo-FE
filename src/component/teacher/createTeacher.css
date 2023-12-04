@@ -1,0 +1,99 @@
+
+
+body {
+    font-family: 'Helvetica', sans-serif;
+}
+.avatar {
+    margin-top: 8px;
+    width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+}
+
+.avatar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.save-exit-buttons {
+    text-align: right;
+    margin-top: 15px;
+}
+
+label{
+    font-weight: bold;
+}
+h2{
+    text-align: center;
+}
+
+.form-control-file::file-selector-button {
+    padding: 6px 12px;
+    font-size: 14px;
+    background-color: white;
+    border: 1px solid #007bff;
+    border-radius: 4px;
+    cursor: pointer;
+    height: 35px;
+    color: #007bff;
+}
+
+.form-control-file::file-selector-button:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.form-control-file {
+    border: none;
+    padding: 0;
+    outline: none;
+    background: none;
+}
+
+h2{
+
+    align-items: center;
+    color: #87AA74;
+    padding-top: 6px;
+}
+
+#avatar {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+#avatar {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.label-custom{
+    border: 1px solid #007bff;
+    width: 90px;
+    height: 38px;
+    border-radius: 5px;
+    padding-top: 7px;
+    font-weight: normal;
+    color: #007bff;
+    transition: background-color 0.3s, color 0.3s;
+    text-align: center;
+}
+
+.label-custom:hover {
+    background-color: #007bff;
+    color: white;
+}
+
+.form-group textarea{
+    height: 70px ;
+}
+sup{
+    color: red;
+}
