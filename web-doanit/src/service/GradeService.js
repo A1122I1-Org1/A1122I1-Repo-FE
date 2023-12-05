@@ -1,6 +1,6 @@
 import axios from "axios";
-const URL_API = "http://localhost:8080/api/get-all-faculty"
-export const findAllFaculty = async () =>{
+const URL_API = "http://localhost:8080/api/get-all-grade"
+export const findAllGrade = async () =>{
     try{
         const result = await axios.get(URL_API)
         return result.data
