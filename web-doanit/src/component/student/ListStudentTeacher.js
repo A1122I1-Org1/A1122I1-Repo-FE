@@ -4,8 +4,9 @@ import * as FacultyService from "../../service/FacultyService"
 import * as StudentService from "../../service/StudentService"
 import '../../static/CSS/StudentCSS.css'
 import React from "react";
-import {useNavigate} from "react-router-dom";
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+import {NavLink, useNavigate} from "react-router-dom";
+import {LazyLoadImage} from 'react-lazy-load-image-component';
+
 export const ListStudentTeacher = () => {
     const [students, setStudents] = useState([]);
     const [grades, setGrades] = useState([]);
@@ -44,32 +45,15 @@ export const ListStudentTeacher = () => {
     const handleSearch = () => {
         setSearchKey(searchKeyTmp);
     };
-    const handleOption = (e) => {
-        const selectedValue = e.target.value;
-        if (selectedValue === "1") {
-            navigate("/add-student")
-        }
-        if (selectedValue === "2") {
-            navigate("/add-multiple-students")
-        }
-    }
     return (
         <div className="container">
             <h2 className="mt-4 mb-4">Danh sách sinh viên</h2>
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-8">
-                        <select className="btn btn-outline-success rounded-pill "
-                                onChange={handleOption}
-                        >
-                            <option selected>Thêm mới sinh viên</option>
-                            <option value="1">
-                                Thêm một sinh viên
-                            </option>
-                            <option value="2">
-                                Thêm nhiều sinh viên
-                            </option>
-                        </select>
+                        <NavLink to={"/add-student"} className="btn btn-outline-success rounded-pill ">
+                            Thêm sinh viên
+                        </NavLink>
                     </div>
                     <div className="col-4">
                         <div className="input-group mb-3 rounded-pill border p-2">
@@ -96,8 +80,8 @@ export const ListStudentTeacher = () => {
                         {students.map((s, index) => (
                             <div className="col-md-3 mb-4" key={index}>
                                 <div className="card">
-                                        <LazyLoadImage src={s.avatar} className="card-img-top img-fluid"
-                                             alt="Sinh viên 1" />
+                                    <LazyLoadImage src={s.avatar} className="card-img-top img-fluid"
+                                                   alt="Sinh viên 1"/>
                                     <div className="card-body">
                                         <h5 className="card-title student-name">{s.name}</h5>
                                         <p className="card-text"><b> <i className="bi bi-code-square"></i> Mã sinh
@@ -113,11 +97,11 @@ export const ListStudentTeacher = () => {
                                         </p>
                                         <p className="card-text">
                                             <b>
-                                            <img src= {teacher.avatar}
-                                                 className="bi bi-facebook rounded-circle p-1 img-teacher"
-                                                 alt="Facebook"
-                                            />
-                                            GV:</b>
+                                                <img src={teacher.avatar}
+                                                     className="bi bi-facebook rounded-circle p-1 img-teacher"
+                                                     alt="Facebook"
+                                                />
+                                                GV:</b>
                                             {teacher.name}
                                         </p>
                                     </div>
