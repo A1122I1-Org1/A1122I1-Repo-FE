@@ -5,7 +5,7 @@ import * as FacultyService from "../../service/FacultyService"
 import * as StudentService from "../../service/StudentService"
 import '../../static/CSS/StudentCSS.css'
 import React from "react";
-import {useNavigate} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 
 export const ListStudentAd = () => {
@@ -44,32 +44,16 @@ export const ListStudentAd = () => {
     const handleSearch = () => {
         setSearchKey(searchKeyTmp);
     };
-    const handleOption = (e) => {
-        const selectedValue = e.target.value;
-        if (selectedValue === "1") {
-            navigate("/add-student")//Phần của KhoaHND
-        }
-        if (selectedValue === "2") {
-            navigate("/add-multiple-students")//Phần của KhoaHND
-        }
-    }
+
     return (
         <div className="container">
             <h2 className="mt-4 mb-4">Danh sách sinh viên</h2>
             <div className="container-fluid">
                 <div className="row">
                     <div className="col-8">
-                        <select className="btn btn-outline-success rounded-pill "
-                                onChange={handleOption}
-                        >
-                            <option selected>Thêm mới sinh viên</option>
-                            <option value="1">
-                                Thêm một sinh viên
-                            </option>
-                            <option value="2">
-                                Thêm nhiều sinh viên
-                            </option>
-                        </select>
+                        <NavLink to={"/add-student"} className="btn btn-outline-success rounded-pill ">
+                            Thêm sinh viên
+                        </NavLink>
                     </div>
                     <div className="col-4">
                         <div className="input-group mb-3 rounded-pill border p-2">
