@@ -120,10 +120,11 @@ export const ListStudentAd = () => {
                     </div>
                 </div>))}
             </>}
+            <PaginationNav pageNumber={pageNumber}
+                           totalPages={totalPages}
+                           setPageNumber={setPageNumber}
+            />
         </div>
-        <PaginationNav pageNumber={pageNumber}
-                       totalPages={totalPages}
-                       setPageNumber={setPageNumber}
-        />
+
     </div>)
 }
