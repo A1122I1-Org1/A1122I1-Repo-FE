@@ -1,0 +1,62 @@
+.container {
+    margin: 20px;
+}
+
+.header {
+    margin-bottom: 20px;
+}
+
+.title {
+    text-align: center;
+    color: #87AA74;
+}
+
+.avatar-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.avatar-container img {
+    width: 100%;
+    height: auto;
+    border: 1px solid #ccc;
+}
+
+
+.avatar-container input[type="file"] {
+    display: none;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.save-exit-buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.save-exit-buttons button {
+    margin-left: 10px;
+}
+
+textarea.form-control {
+    height: 114px;
+    resize: vertical;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
