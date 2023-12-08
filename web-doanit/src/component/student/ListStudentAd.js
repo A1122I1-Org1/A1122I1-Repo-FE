@@ -40,6 +40,7 @@ export const ListStudentAd = () => {
             const avatarUrls = await Promise.all(students.map(async (s) => {
                 if (s.avatar) {
                     const downloadUrl = await storage.ref(s.avatar).getDownloadURL();
+                    console.log(downloadUrl)
                     return downloadUrl;
                 } else {
                     return null;
@@ -119,11 +120,12 @@ export const ListStudentAd = () => {
                         </div>
                     </div>
                 </div>))}
+                <PaginationNav pageNumber={pageNumber}
+                               totalPages={totalPages}
+                               setPageNumber={setPageNumber}
+                />
             </>}
         </div>
-        <PaginationNav pageNumber={pageNumber}
-                       totalPages={totalPages}
-                       setPageNumber={setPageNumber}
-        />
-    </div>)
+    </div>
+    )
 }

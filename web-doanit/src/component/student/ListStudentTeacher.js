@@ -6,6 +6,7 @@ import '../../static/CSS/StudentCSS.css'
 import {NavLink} from "react-router-dom";
 import {storage} from "../../config/firebaseConfig";
 import {PaginationNav} from "./PaginationNav";
+import {LazyLoadImage} from "react-lazy-load-image-component";
 
 export const ListStudentTeacher = () => {
     const [students, setStudents] = useState([]);
@@ -103,6 +104,10 @@ export const ListStudentTeacher = () => {
             {students.length === 0 ? <h1 className="text-center">Dữ liệu không tồn tại</h1> : <>
                 {students.map((s, index) => (<div className="col-md-3 mb-4" key={index}>
                     <div className="card">
+                        <LazyLoadImage
+                            effect="blur" src={avatarUrls[index]} className="card-img-top img-fluid"
+                            alt={`Sinh viên ${s.index}`} width="100%"
+                        />
                         <div className="card-body">
                             <h5 className="card-title student-name">{s.name}</h5>
                             <p className="card-text"><b> <i className="bi bi-code-square"></i> Mã sinh
@@ -135,12 +140,11 @@ export const ListStudentTeacher = () => {
                         </div>
                     </div>
                 </div>))}
-
+                <PaginationNav pageNumber={pageNumber}
+                               totalPages={totalPages}
+                               setPageNumber={setPageNumber}
+                />
             </>}
         </div>
-        <PaginationNav pageNumber={pageNumber}
-                       totalPages={totalPages}
-                       setPageNumber={setPageNumber}
-        />
     </div>)
 }
