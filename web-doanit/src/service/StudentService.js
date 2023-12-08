@@ -34,3 +34,30 @@ export const findAllWithTeacher = async (pageNumber, searchKey) => {
         throw e; // Re-throw the error to handle it at the caller's level
     }
 };
+
+export const save = async (value) => {
+    try {
+        await axios.post(URL + "create-student", value)
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+export const findById = async () => {
+    try {
+        const studentId = 9;
+        const res = await axios.get(URL + "get-student-by-studentId/" + studentId);
+        return res.data;
+    } catch (e) {
+        console.log(e);
+    }
+}
+
+export const update = async (item) => {
+    try {
+        const res = await axios.put(URL + "edit-student" , item);
+        return res.data;
+    } catch (e) {
+        console.log(e);
+    }
+};
