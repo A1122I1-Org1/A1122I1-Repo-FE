@@ -1,12 +1,13 @@
-
 import {ErrorMessage, Field, Form, Formik} from "formik";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import '../css/ResgiterGroup.css'
-import * as Yup from "yup"
 import {toast} from "react-toastify";
 import * as StudentService from "../service/StudentService"
 import {save} from "../service/GroupAccountService";
 import images from "../img/Jude-Bellingham-Real-01.jpg"
+import {LazyLoadImage} from 'react-lazy-load-image-component';
+import {storage} from "../config/firebaseConfig";
+import * as Yup from "yup"
 
 export function ResgiterGroupStudent() {
     const [listAdd, setListAdd] = useState([]);
@@ -17,6 +18,27 @@ export function ResgiterGroupStudent() {
     const pageCount = totalPages;
     const [searchKey, setSearchKey] = useState("");
     const [searchKeyTmp, setSearchKeyTmp] = useState("");
+    const [avatarUrls, setAvatarUrls] = useState([]);
+    // ===========avatar======
+    const fetchAvatars = async () => {
+        try {
+            const avatarUrls = await Promise.all(students.map(async (s) => {
+                if (s.avatar) {
+                    const downloadUrl = await storage.ref(s.avatar).getDownloadURL();
+                    return downloadUrl;
+                } else {
+                    return null;
+                }
+            }));
+            setAvatarUrls(avatarUrls);
+        } catch (error) {
+            console.error("Error fetching avatars from Firebase:", error);
+        }
+    };
+    useEffect(() => {
+        fetchAvatars();
+    }, [students]);
+    // ===================================
     // const navigate = useNavigate();
     //================================Call BE=======================
     useEffect(() => {
@@ -93,7 +115,10 @@ export function ResgiterGroupStudent() {
                             {students.map((s, index) => (
                                 <div className="col-md-3 mb-4" key={index}>
                                     <div className="card">
-                                        <img src={images} alt="sinh vien 1"/>
+                                        <LazyLoadImage
+                                            effect="blur" src={avatarUrls[index]} className="card-img-top img-fluid"
+                                            alt={`Sinh viên ${s.index}`} width="100%"
+                                        />
                                         <div className="card-body white">
                                             <h5 className="card-title student-name">{s.name}</h5>
                                             <p className="card-text"><b> <i className="bi bi-code-square"></i> Mã sinh
@@ -209,29 +234,46 @@ export function ResgiterGroupStudent() {
                 <br/>
                 {/*============tim kiem========================*/}
                 <Formik initialValues={{
-                    studentId: 5,
                     groupAccount: {
                         id: 1,
                         name: "",
+                        students: [],
                     },
-                    accountId: 5,
+
                 }} onSubmit={values => {
+                    values.groupAccount.students = students;
                     console.log(values);
-                    save(values.groupAccount, values.studentId, values.accountId)
+                    save(values.groupAccount)
                     toast('🦄 Resgiter Group successfully!!!!');
-                }}>
+                }} validationSchema={Yup.object({
+                    groupAccount: Yup.object({
+                        name: Yup.string()
+                            .required("Tên nhóm không được để trống")
+                            .min(5, "Tên phải nhiều hơn 5 ký tự")
+                            .max(255, "Tên không vượt quá 255 ký tự")
+                            .matches(/^[a-zA-Z\s]+$/, "Tên nhóm không được chứa ký tự đặc biệt")
+
+                })
+                })}
+                >
                     <Form>
-                        <div className="input-group mb-3">
+                        <div>
                             <div hidden>
-                                <Field name="studentId" value="5"></Field>
-                                <Field name="accountId" value="5"></Field>
                                 <Field name="groupAccount.id" value="1"></Field>
+                                <Field name="groupAccount.students" value="[]"></Field>
+
                             </div>
 
-                            <Field type="text" className="form-control" placeholder="Nhập vào tên nhóm"
-                                   name="groupAccount.name"
-                                   aria-label="Username"
-                                   aria-describedby="basic-addon1"/>
+                                <ErrorMessage name="groupAccount.name" className="text-danger" component="p"/>
+
+                                <Field type="text" className="form-control" placeholder="Nhập vào tên nhóm"
+                                       name="groupAccount.name"
+                                       aria-label="Username"
+                                       aria-describedby="basic-addon1"/>
+
+
+
+
                         </div>
                         <br/>
                         <button type="submit" className="btn btn-outline-success">Đăng ký nhóm</button>
