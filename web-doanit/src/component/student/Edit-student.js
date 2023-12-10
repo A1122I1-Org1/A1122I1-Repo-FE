@@ -5,10 +5,10 @@ import anh from '../image/default-avatar.png';
 import * as Yup from "yup";
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import * as studentService from '../Service/studentService'
-import * as gradeService from '../Service/gradeService'
+import * as studentService from '../../service/studentService'
+import * as gradeService from '../../service/gradeService'
 import {useParams} from "react-router";
-import {storage} from "../config/firebaseConfig";
+import {storage} from "../../config/firebaseConfig";
 
 const URL1 = "http://localhost:8080/api/get-all-grade";
 
@@ -17,6 +17,8 @@ export function Edit() {
     const [grades, setGrades] = useState([])
     const [avatar, setAvatar] = useState(null)
     const [avatarUrl, setAvatarUrl] = useState('')
+    const [isUploadImage, setIsUploadImage] = useState(true);
+
 
 
     const {studentId} = useParams();
@@ -49,8 +51,6 @@ export function Edit() {
                 const imageUrl = await getAvatarFromFirebase(result.avatar);
                 setAvatarUrl(imageUrl);
             }
-
-
         } catch (error) {
             console.error("Error fetching grades:", error);
         }
@@ -83,6 +83,7 @@ export function Edit() {
 
     const onAvatarChange = (event) => {
         if (event.target.files && event.target.files[0]) {
+            setIsUploadImage(false);
             setAvatar(event.target.files[0]);
             setAvatarUrl(URL.createObjectURL(event.target.files[0]));
         }
@@ -126,14 +127,19 @@ export function Edit() {
                         gender: values.gender,
                         deleteFlag: values.deleteFlag,
                         grade: values.grade,
-                        account: values.account
+                        account: values.account,
+                        avatar:values.avatar
                     }}
 
 
                 onSubmit={async (values) => {
                     try {
 
-                        if (avatar) {
+                        if (isUploadImage) {
+                            let name = avatarUrl.split('/');
+                            name = name[name.length - 1].split('?')[0];
+                            values.avatar = name;
+                        }else {
                             await handleAvatarUpload();
                             values.avatar = avatar.name;
                         }

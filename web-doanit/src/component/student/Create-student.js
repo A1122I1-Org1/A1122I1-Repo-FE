@@ -3,12 +3,13 @@ import {ErrorMessage, Field, Form, Formik} from "formik";
 import '../Css/create-student.css';
 import anh from '../image/default-avatar.png';
 import * as Yup from "yup";
-import {save} from "../../service/StudentService";
+import {save} from "../../service/studentService";
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import * as gradeService from '../../service/gradeService';
 import { storage } from "../../config/firebaseConfig";
 const URL1 = "http://localhost:8080/api/get-all-grade";
+
 
 
 
@@ -22,13 +23,14 @@ export function Create() {
 
 
 
+
     useEffect(() => {
-        findAll();
+        findGrade();
     }, []);
 
 
 
-    const findAll = async () => {
+    const findGrade = async () => {
         try {
             const result = await gradeService.findAllGrade(URL1);
             setGrades(result);
@@ -50,11 +52,12 @@ export function Create() {
 
     const handleAvatarUpload = async () => {
         try {
-            const uploadTask = storage.ref(`${avatar.name}`).put(avatar);
-            const snapshot = await uploadTask;
-            const downloadUrl = await snapshot.ref.getDownloadURL();
-
-            setAvatarUrl(downloadUrl);
+            if (avatar) {
+                const uploadTask = storage.ref(`${avatar.name}`).put(avatar);
+                await uploadTask;
+                const downloadUrl = await storage.ref(avatar.name).getDownloadURL();
+                setAvatarUrl(downloadUrl);
+            }
         } catch (error) {
             console.error("Error uploading avatar:", error);
             throw error;
@@ -96,6 +99,7 @@ export function Create() {
                     } catch (error) {
                         console.error('Error uploading file or saving student:', error);
                     }
+
                 }}
 
 
@@ -146,87 +150,86 @@ export function Create() {
                             <h2 className="title">THÊM MỚI SINH VIÊN</h2>
                         </div>
 
-                            <div className="row">
+                        <div className="row">
 
-                                <div className="col-md-3 mr-2">
-                                    <div className="avatar-container">
-                                        <img src={avatarUrl || (avatar ? URL.createObjectURL(avatar) : anh)} alt="avatar" className="avatar" id="avatar-image" />
-                                        <div className="form-group mt-2" style={{ textAlign: "center" }}>
-                                            <input
-                                                type="file"
-                                                id="avatar"
-                                                onChange={onAvatarChange}
-                                                name="avatar"
-                                                style={{
-                                                    display: 'none', // Hide the input
-                                                }}
-                                            />
-                                            <label htmlFor="avatar" className={`btn btn-outline-primary label-custom `}>
-                                                Chọn ảnh đại diện
-                                            </label>
-                                            <ErrorMessage name="avatar" className="text-danger" component="p" />
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="col-md-4 mr-5">
-                                    <div className="form-group">
-                                        <label htmlFor="name">Tên sinh viên (<span
-                                            className="text-danger">*</span>):</label>
-                                        <Field type="text" className="form-control" id="name" name="name"/>
-                                        <ErrorMessage name="name" className="text-danger" component="p"/>
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="dateOfBirth">Ngày Sinh (<span className="text-danger">*</span>):</label>
-                                        <Field type="date" className="form-control" id="dateOfBirth"
-                                               name="dateOfBirth"/>
-                                        <ErrorMessage name="dateOfBirth" className="text-danger" component="p"/>
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="email">Email (<span className="text-danger">*</span>):</label>
-                                        <Field type="text" className="form-control" id="email" name="email"/>
-                                        <ErrorMessage name="email" className="text-danger" component="p"/>
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="grade">Lớp (<span className="text-danger">*</span>):</label>
-                                        <Field as="select" className="form-control" id="grade" name="grade">
-                                            {grades && grades.length > 0 ? (
-                                                grades.map((grade) => (
-                                                    <option key={grade.gradeId} value={grade.gradeId}>{grade.name}</option>
-                                                ))
-                                            ) : (
-                                                <option value="" disabled>Không có lớp nào</option>
-                                            )}
-                                        </Field>
-                                        <ErrorMessage name="grade" className="text-danger" component="p"/>
-                                    </div>
-                                </div>
-                                <div className="col-md-4">
-                                    <div className="form-group">
-                                        <label htmlFor="phone">Số Điện Thoại (<span
-                                            className="text-danger">*</span>):</label>
-                                        <Field type="text" className="form-control" id="phone" name="phone"/>
-                                        <ErrorMessage name="phone" className="text-danger" component="p"/>
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="address">Địa Chỉ (<span
-                                            className="text-danger">*</span>):</label>
-                                        <Field as="textarea" className="form-control" id="address" name="address"/>
-                                        <ErrorMessage name="address" className="text-danger" component="p"/>
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="gender">Giới Tính (<span
-                                            className="text-danger">*</span>):</label>
-                                        <Field as="select" className="form-control" id="gender" name="gender">
-                                            <option value={true}>Nam</option>
-                                            <option value={false}>Nữ</option>
-                                        </Field>
-                                    </div>
-                                    <div className="mt-3 save-exit-buttons">
-                                        <button type="submit" className="btn btn-outline-success">Lưu</button>
-                                        <button className="btn btn-outline-secondary ml-2">Thoát</button>
+                            <div className="col-md-3 mr-2">
+                                <div className="avatar-container">
+                                    <img src={avatarUrl || (avatar ? URL.createObjectURL(avatar) : anh)} alt="avatar" className="avatar" id="avatar-image" />
+                                    <div className="form-group mt-2" style={{ textAlign: "center" }}>
+                                        <input
+                                            type="file"
+                                            id="avatar"
+                                            onChange={onAvatarChange}
+                                            name="avatar"
+                                            style={{
+                                                display: 'none', // Hide the input
+                                            }}
+                                        />
+                                        <label htmlFor="avatar" className={`btn btn-outline-primary label-custom `}>
+                                            Chọn ảnh đại diện
+                                        </label>
                                     </div>
                                 </div>
                             </div>
+                            <div className="col-md-4 mr-5">
+                                <div className="form-group">
+                                    <label htmlFor="name">Tên sinh viên (<span
+                                        className="text-danger">*</span>):</label>
+                                    <Field type="text" className="form-control" id="name" name="name"/>
+                                    <ErrorMessage name="name" className="text-danger" component="p"/>
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="dateOfBirth">Ngày Sinh (<span className="text-danger">*</span>):</label>
+                                    <Field type="date" className="form-control" id="dateOfBirth"
+                                           name="dateOfBirth"/>
+                                    <ErrorMessage name="dateOfBirth" className="text-danger" component="p"/>
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="email">Email (<span className="text-danger">*</span>):</label>
+                                    <Field type="text" className="form-control" id="email" name="email"/>
+                                    <ErrorMessage name="email" className="text-danger" component="p"/>
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="grade">Lớp (<span className="text-danger">*</span>):</label>
+                                    <Field as="select" className="form-control" id="grade" name="grade">
+                                        {grades && grades.length > 0 ? (
+                                            grades.map((grade) => (
+                                                <option key={grade.gradeId} value={grade.gradeId}>{grade.name}</option>
+                                            ))
+                                        ) : (
+                                            <option value="" disabled>Không có lớp nào</option>
+                                        )}
+                                    </Field>
+                                    <ErrorMessage name="grade" className="text-danger" component="p"/>
+                                </div>
+                            </div>
+                            <div className="col-md-4">
+                                <div className="form-group">
+                                    <label htmlFor="phone">Số Điện Thoại (<span
+                                        className="text-danger">*</span>):</label>
+                                    <Field type="text" className="form-control" id="phone" name="phone"/>
+                                    <ErrorMessage name="phone" className="text-danger" component="p"/>
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="address">Địa Chỉ (<span
+                                        className="text-danger">*</span>):</label>
+                                    <Field as="textarea" className="form-control" id="address" name="address"/>
+                                    <ErrorMessage name="address" className="text-danger" component="p"/>
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="gender">Giới Tính (<span
+                                        className="text-danger">*</span>):</label>
+                                    <Field as="select" className="form-control" id="gender" name="gender">
+                                        <option value={true}>Nam</option>
+                                        <option value={false}>Nữ</option>
+                                    </Field>
+                                </div>
+                                <div className="mt-3 save-exit-buttons">
+                                    <button type="submit" className="btn btn-outline-success">Lưu</button>
+                                    <button className="btn btn-outline-secondary ml-2">Thoát</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </Form>
             </Formik>
