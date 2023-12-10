@@ -10,6 +10,7 @@ import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import HomePage from "./pages/HomePage";
 import TopicTable from "./component/TopicTable";
+import {RegisterTeacher} from "./component/registerTeacher/RegisterTeacher";
 function App() {
     return (
         <>
@@ -21,6 +22,7 @@ function App() {
                 <Route path="/login" element={<Login/>}></Route>
                 <Route path="/user-info" element={<UserInfo/>}></Route>
                 <Route path="/topic-table" element={<TopicTable/>}></Route>
+                <Route path="/register-teacher" element={<RegisterTeacher/>}></Route>
             </Routes>
             <ToastContainer/>
         </>
