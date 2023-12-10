@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import * as GradeService from "../../service/GradeService"
 import * as FacultyService from "../../service/FacultyService"
 import * as StudentService from "../../service/StudentService"
-import '../../static/CSS/StudentCSS.css'
+// import '../../static/CSS/StudentCSS.css'
 import {NavLink} from "react-router-dom";
 import {LazyLoadImage} from 'react-lazy-load-image-component';
 import {storage} from "../../config/firebaseConfig";
@@ -40,6 +40,7 @@ export const ListStudentAd = () => {
             const avatarUrls = await Promise.all(students.map(async (s) => {
                 if (s.avatar) {
                     const downloadUrl = await storage.ref(s.avatar).getDownloadURL();
+                    console.log(downloadUrl)
                     return downloadUrl;
                 } else {
                     return null;
@@ -119,11 +120,13 @@ export const ListStudentAd = () => {
                         </div>
                     </div>
                 </div>))}
+                <PaginationNav pageNumber={pageNumber}
+                               totalPages={totalPages}
+                               setPageNumber={setPageNumber}
+                />
             </>}
         </div>
-        <PaginationNav pageNumber={pageNumber}
-                       totalPages={totalPages}
-                       setPageNumber={setPageNumber}
-        />
     </div>)
+    </div>
+    )
 }
