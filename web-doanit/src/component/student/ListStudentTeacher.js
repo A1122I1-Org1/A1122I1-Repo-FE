@@ -2,7 +2,7 @@ import React, {useEffect, useState} from "react";
 import * as GradeService from "../../service/GradeService"
 import * as FacultyService from "../../service/FacultyService"
 import * as StudentService from "../../service/StudentService"
-import '../../static/CSS/StudentCSS.css'
+// import '../../static/CSS/StudentCSS.css'
 import {NavLink} from "react-router-dom";
 import {storage} from "../../config/firebaseConfig";
 import {PaginationNav} from "./PaginationNav";

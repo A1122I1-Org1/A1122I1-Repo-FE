@@ -50,7 +50,7 @@ export const Login = () => {
                                                 try {
                                                     await LoginService.login(values);
                                                     toast("Đăng nhập thành công");
-                                                    // navigate("/info");
+                                                    navigate("/user-info");
                                                 } catch (error) {
                                                     const errorMessage = error.response && error.response.status === 401
                                                         ? error.response.data : "Có lỗi xảy ra khi đăng nhập";
