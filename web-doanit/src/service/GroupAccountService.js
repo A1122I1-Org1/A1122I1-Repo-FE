@@ -37,7 +37,6 @@ export const acceptGroup=async (id)=>{
     } catch (e) {
         console.log(e)
     }
-
 }
 export const deleteGroup=async (id,listStudentId)=>{
     try {
