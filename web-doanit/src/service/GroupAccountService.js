@@ -36,7 +36,6 @@ export const acceptGroup=async (id)=>{
         return result.data
     } catch (e) {
         console.log(e)
-
     }
 
 }
