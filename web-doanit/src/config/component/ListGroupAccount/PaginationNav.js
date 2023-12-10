@@ -31,6 +31,7 @@ export const PaginationNav = ({pageNumber, totalPages, setPageNumber}) => {
                       className="form-control input-sm"
                       min={1}
                       max={pageCount}
+
                   />
                   <span className="input-group-text">/{pageCount}</span>
                   <button
