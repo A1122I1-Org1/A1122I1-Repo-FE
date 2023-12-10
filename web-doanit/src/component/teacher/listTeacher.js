@@ -7,7 +7,6 @@ import * as TeacherService from "../../service/TeacherService";
 import {toast} from "react-toastify";
 import {LazyLoadImage} from "react-lazy-load-image-component";
 import DeleteConfirmation from "./DeleteConfirmation";
-import {getAllTeacher} from "../../service/TeacherService";
 
 export const ListTeacher = () => {
     const [pageNumber, setPageNumber] = useState(0);
