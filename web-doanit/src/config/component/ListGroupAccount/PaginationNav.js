@@ -60,5 +60,6 @@ export const PaginationNav = ({pageNumber, totalPages, setPageNumber}) => {
                 </ul>
             </nav>
         </div>
+
     </div>)
 }
