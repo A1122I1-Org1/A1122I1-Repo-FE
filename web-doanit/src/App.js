@@ -9,7 +9,7 @@ import {UserInfo} from "./component/userInfo/user-info";
 import {ToastContainer} from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 import HomePage from "./pages/HomePage";
-import TopicTable from "./component/TopicTable";
+import TopicTable from "./component/topic/TopicTable";
 import {Create} from "./component/student/Create-student";
 import {RegisterTeacher} from "./component/registerTeacher/RegisterTeacher";
 function App() {
