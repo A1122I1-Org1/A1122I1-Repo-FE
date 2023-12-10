@@ -13,12 +13,13 @@ import HomePage from "./pages/HomePage";
 import TopicTable from "./component/topic/TopicTable";
 import {Create} from "./component/student/Create-student";
 import {RegisterTeacher} from "./component/registerTeacher/RegisterTeacher";
+import UpdateTeacher from "./component/teacher/updateTeacher";
 function App() {
     return (
         <>
             <Routes>
                 <Route path="/" element={<HomePage/>}></Route>
-                <Route path="/create" element={<CreateTeacher/>}/>
+                <Route path="/create-teacher" element={<CreateTeacher/>}/>
                 <Route path="/student-list" element={<ListStudentAd/>}></Route>
                 <Route path="/student-list-teacher" element={<ListStudentTeacher/>}></Route>
                 <Route path="/teachers-list" element={<ListTeacher/>}></Route>
@@ -27,6 +28,7 @@ function App() {
                 <Route path="/topic-table" element={<TopicTable/>}></Route>
                 <Route path="/create-student" element={<Create/>}/>
                 <Route path="/register-teacher" element={<RegisterTeacher/>}></Route>
+                <Route path="/update-teacher/:id"  element={<UpdateTeacher/>}/>
             </Routes>
             <ToastContainer/>
         </>

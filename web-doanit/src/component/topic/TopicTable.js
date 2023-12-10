@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import TopicManagerService from '../../service/TopicManagerService';
 import {storage} from "../../config/firebaseConfig";
 import {LazyLoadImage} from 'react-lazy-load-image-component';
-import '../../assets/css/style.css'
+// import '../../assets/css/style.css'
 const TopicTable = () => {
     const [topics, setTopics] = useState([]);
     const [currentPage, setCurrentPage] = useState(0);

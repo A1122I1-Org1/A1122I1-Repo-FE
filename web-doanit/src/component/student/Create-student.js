@@ -1,12 +1,12 @@
 import React, {useEffect, useState} from "react";
 import {ErrorMessage, Field, Form, Formik} from "formik";
-import '../Css/create-student.css';
+// import '../Css/create-student.css';
 import anh from '../image/default-avatar.png';
 import * as Yup from "yup";
-import {save} from "../../service/studentService";
+import {save} from "../../service/StudentService";
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import * as gradeService from '../../service/gradeService';
+import * as gradeService from '../../service/GradeService';
 import { storage } from "../../config/firebaseConfig";
 const URL1 = "http://localhost:8080/api/get-all-grade";
 

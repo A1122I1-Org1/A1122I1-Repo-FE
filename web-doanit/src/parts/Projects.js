@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import ScrollReveal from "scrollreveal";
-import '../assets/css/style.css'
+import '../pages/css/style.css'
 
 const Projects = () => {
     useEffect(() => {
