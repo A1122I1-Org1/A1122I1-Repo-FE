@@ -126,6 +126,7 @@ export const ListStudentAd = () => {
                 />
             </>}
         </div>
+    </div>)
     </div>
     )
 }

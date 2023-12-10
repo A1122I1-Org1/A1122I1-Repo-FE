@@ -34,7 +34,7 @@ export const PaginationNav = ({pageNumber, totalPages, setPageNumber}) => {
                   />
                   <span className="input-group-text">/{pageCount}</span>
                   <button
-                      className="btn btn-primary btn-sm"
+                      className="btn btn-success btn-sm"
                       onClick={() => setPageNumber(Math.max(Math.min(targetPage, pageCount - 1), 0))}
                   >
                     Go
