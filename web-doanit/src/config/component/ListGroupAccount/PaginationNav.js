@@ -53,7 +53,6 @@ export const PaginationNav = ({pageNumber, totalPages, setPageNumber}) => {
                                 return newPageNumber;
                             })}
                         >
-
                             <span aria-hidden="true">&raquo;</span>
                             <span className="sr-only"></span>
                         </a>

@@ -47,7 +47,6 @@ export const deleteGroup=async (id,listStudentId)=>{
         console.log(e)
     }
 
-
 }
 export const createDeadLine=async (id,deadline)=>{
     try {
