@@ -14,6 +14,7 @@ export function ResgiterTopic() {
     const [avatarUrl, setAvatarUrl] = useState('')
     const [moTa, setMoTa] = useState(null);
     const [moTaUrl, setMoTaUrl] = useState('')
+
     const onMotaChange = (event) => {
         if (event.target.files && event.target.files[0]) {
             setMoTa(event.target.files[0]);
@@ -67,7 +68,6 @@ export function ResgiterTopic() {
                             deleteFlag: null,
                             faculty: null
                         },
-                        groupAccountId: 1
                     }}
                 onSubmit={async values => {
                     await handleMotaUpload();
@@ -158,10 +158,6 @@ export function ResgiterTopic() {
                                                    onChange={onAvatarChange}
                                             />
                                             <ErrorMessage name="topic.image" className="text-danger" component="p"/>
-
-                                        </div>
-                                        <div hidden>
-                                            <Field name="groupAccountId" value="1"/>
 
                                         </div>
                                         <div className="mb-3" style={{textAlign: "center"}}>
