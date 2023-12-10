@@ -5,7 +5,7 @@ import Home from "../parts/Home";
 import News from "../parts/News";
 import Projects from "../parts/Projects";
 import Contact from "../parts/Contact";
-import '../assets/css/style.css'
+import './css/style.css'
 
 const HomePage = () => {
     const [counter, setCounter] = useState(1);
