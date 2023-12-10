@@ -1,51 +1,51 @@
-.container {
+.khoahnd-container {
     margin: 20px;
 }
 
-.header {
+.khoahnd-header {
     margin-bottom: 20px;
 }
 
-.title {
+.khoahnd-title {
     text-align: center;
     color: #87AA74;
 }
 
-.avatar-container {
+.khoahnd-avatar-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 20px;
 }
 
-.avatar-container img {
+.khoahnd-avatar-container img {
     width: 100%;
     height: auto;
     border: 1px solid #ccc;
 }
 
-
-.avatar-container input[type="file"] {
+.khoahnd-avatar-container input[type="file"] {
     display: none;
 }
 
-.form-group {
+.khoahnd-form-group {
     margin-bottom: 15px;
 }
 
-.save-exit-buttons {
+.khoahnd-save-exit-buttons {
     text-align: center;
     margin-top: 20px;
 }
 
-.save-exit-buttons button {
+.khoahnd-save-exit-buttons button {
     margin-left: 10px;
 }
 
-textarea.form-control {
+.khoahnd-form-group textarea.form-control {
     height: 114px;
     resize: vertical;
 }
+
 
 
 

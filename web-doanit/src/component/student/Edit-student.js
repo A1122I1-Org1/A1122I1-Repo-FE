@@ -203,18 +203,18 @@ export function Edit() {
                 })}
             >
                 <Form>
-                    <div className="container">
+                    <div className="khoahnd-container">
 
-                        <div className="header">
-                            <h2 className="title">CHỈNH SỬA SINH VIÊN</h2>
+                        <div className="khoahnd-header">
+                            <h2 className="khoahnd-title">CHỈNH SỬA SINH VIÊN</h2>
                         </div>
 
                         <div className="row">
 
                             <div className="col-md-3 mr-2">
-                                <div className="avatar-container">
+                                <div className="khoahnd-avatar-container">
                                     <img src={avatarUrl || (avatar ? URL.createObjectURL(avatar) : anh)} alt="avatar" className="avatar" id="avatar-image" />
-                                    <div className="form-group mt-2" style={{ textAlign: "center" }}>
+                                    <div className="khoahnd-form-group mt-2" style={{ textAlign: "center" }}>
                                         <input
                                             type="file"
                                             id="avatar"
@@ -232,25 +232,25 @@ export function Edit() {
                                 </div>
                             </div>
                             <div className="col-md-4 mr-5">
-                                <div className="form-group">
+                                <div className="khoahnd-form-group">
                                     <label htmlFor="name">Tên sinh viên (<span
                                         className="text-danger">*</span>):</label>
                                     <Field type="text" className="form-control" id="name" name="name"/>
                                     <ErrorMessage name="name" className="text-danger" component="p"/>
                                 </div>
-                                <div className="form-group">
+                                <div className="khoahnd-form-group">
                                     <label htmlFor="dateOfBirth">Ngày Sinh (<span
                                         className="text-danger">*</span>):</label>
                                     <Field type="date" className="form-control" id="dateOfBirth"
                                            name="dateOfBirth"/>
                                     <ErrorMessage name="dateOfBirth" className="text-danger" component="p"/>
                                 </div>
-                                <div className="form-group">
+                                <div className="khoahnd-form-group">
                                     <label htmlFor="email">Email (<span className="text-danger">*</span>):</label>
                                     <Field type="text" className="form-control" id="email" name="email"/>
                                     <ErrorMessage name="email" className="text-danger" component="p"/>
                                 </div>
-                                <div className="form-group">
+                                <div className="khoahnd-form-group">
                                     <label htmlFor="grade">Lớp (<span className="text-danger">*</span>):</label>
                                     <Field as="select" className="form-control" id="grade" name="grade">
                                         {grades && grades.length > 0 ? (
@@ -265,26 +265,26 @@ export function Edit() {
                                 </div>
                             </div>
                             <div className="col-md-4">
-                                <div className="form-group">
+                                <div className="khoahnd-form-group">
                                     <label htmlFor="phone">Số Điện Thoại (<span
                                         className="text-danger">*</span>):</label>
                                     <Field type="text" className="form-control" id="phone" name="phone"/>
                                     <ErrorMessage name="phone" className="text-danger" component="p"/>
                                 </div>
-                                <div className="form-group">
+                                <div className="khoahnd-form-group">
                                     <label htmlFor="address">Địa Chỉ (<span
                                         className="text-danger">*</span>):</label>
                                     <Field as="textarea" className="form-control" id="address" name="address"/>
                                     <ErrorMessage name="address" className="text-danger" component="p"/>
                                 </div>
-                                <div className="form-group">
+                                <div className="khoahnd-form-group">
                                     <label htmlFor="gender">Giới Tính (<span className="text-danger">*</span>):</label>
                                     <Field as="select" className="form-control" id="gender" name="gender">
                                         <option value={true}>Nam</option>
                                         <option value={false}>Nữ</option>
                                     </Field>
                                 </div>
-                                <div className="mt-3 save-exit-buttons">
+                                <div className="mt-3 khoahnd-save-exit-buttons">
                                     <button type="submit" className="btn btn-outline-success">Lưu</button>
                                     <button className="btn btn-outline-secondary ml-2">Thoát</button>
                                 </div>
