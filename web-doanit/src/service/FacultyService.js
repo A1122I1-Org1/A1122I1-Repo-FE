@@ -1,8 +1,8 @@
 import axios from "axios";
-const URL_API = "http://localhost:8080/api/get-all-faculty"
+
 export const findAllFaculty = async () =>{
     try{
-        const result = await axios.get(URL_API)
+        const result = await axios.get("api/get-all-faculty")
         return result.data
     } catch (e){
         console.log(e)
