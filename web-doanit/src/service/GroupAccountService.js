@@ -12,9 +12,9 @@ const axiosInstance = axios.create({
         'Content-Type': 'application/json',
     },
 });
-export const save= async (groupAccount,idStudent,accountStudent)=>{
+export const save= async (groupAccount)=>{
     try{
-        await axios.post(URL+"/createGroup?studentId="+idStudent+"&accountId="+accountStudent,groupAccount)
+        await axios.post(URL+"/createGroup",groupAccount)
     }catch (e){
         console.log(e)
     }
