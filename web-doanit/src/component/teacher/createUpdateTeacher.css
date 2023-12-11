@@ -1,5 +1,3 @@
-
-
 body {
     font-family: 'Helvetica', sans-serif;
 }
@@ -20,24 +18,23 @@ body {
     margin-top: 15px;
 }
 
-label{
+.label-form{
     font-weight: bold;
+    color: black;
+    float: left;
 }
-h2{
-    text-align: center;
-    color: #87AA74;
-}
+/*h2{*/
+/*    text-align: center;*/
+/*    color: #87AA74;*/
+/*}*/
 
 
+/*h2{*/
 
-
-
-h2{
-
-    align-items: center;
-    color: #87AA74;
-    padding-top: 6px;
-}
+/*    align-items: center;*/
+/*    color: #87AA74;*/
+/*    padding-top: 6px;*/
+/*}*/
 
 #avatar {
     width: 0.1px;
@@ -82,7 +79,7 @@ h2{
     height: 70px ;
 }
 sup{
-    color: red;
+    color: #ff0000;
 }
 
 
@@ -106,11 +103,6 @@ sup{
     margin-right: auto;
 }
 
-
-
-
-
-
-
-
-
+.error-custom{
+    float: left;
+}

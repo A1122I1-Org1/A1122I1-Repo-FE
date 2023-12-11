@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import * as GroupService from '../../../service/GroupAccountService';
+import * as GroupService from '../../../src/service/GroupAccountService';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import Form from 'react-bootstrap/Form';

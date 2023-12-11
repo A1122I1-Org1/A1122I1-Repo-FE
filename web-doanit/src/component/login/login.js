@@ -2,12 +2,13 @@ import './login.css';
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import * as LoginService from "../../service/LoginService";
 import logo from '../../assets/images/logo.png';
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import * as Yup from "yup";
 import {toast} from "react-toastify";
 
 export const Login = () => {
     const navigate = useNavigate();
+    const location = useLocation();
     return (
         <div className="login">
             <div className="body">
@@ -48,9 +49,20 @@ export const Login = () => {
                                             })}
                                             onSubmit={async (values) => {
                                                 try {
+                                                    // debugger;
                                                     await LoginService.login(values);
                                                     toast("Đăng nhập thành công");
-                                                    navigate("/user-info");
+                                                    navigate("/");
+                                                    // console.log(location.state?.from)
+                                                    // const isPreviousLogin = location.state?.from === '/login' || location.state?.from === '/' || !location.state?.from;
+                                                    // if (isPreviousLogin) {
+                                                    //     navigate('/');
+                                                    // } else {
+                                                    //     // Nếu không, chuyển hướng đến URL trước đó
+                                                    //     navigate(location.state.from);
+                                                    // }
+
+
                                                 } catch (error) {
                                                     const errorMessage = error.response && error.response.status === 401
                                                         ? error.response.data : "Có lỗi xảy ra khi đăng nhập";

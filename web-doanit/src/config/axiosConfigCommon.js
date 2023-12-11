@@ -17,11 +17,11 @@ const axiosCommon = () => {
 
 
     axios.interceptors.request.use(function (config) {
-        if (config.url !== "/api/auth/sign-in" && checkTokenExpiration()) {
+        // if (config.url !== "/api/auth/sign-in" && checkTokenExpiration()) {
             config.headers['Authorization']= "Bearer "+ localStorage.getItem("token");
-        } else {
-            localStorage.removeItem("token");
-        }
+        // } else {
+        //     localStorage.removeItem("token");
+        // }
         return config;
     }, function (error) {
         return Promise.reject(error);

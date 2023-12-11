@@ -1,13 +1,12 @@
-import {ErrorMessage, Field, Form, Formik} from "formik";
-import React, {useEffect, useState} from "react";
-import '../css/ResgiterGroup.css'
+import "../groupstudent/ResgiterGroup.css"
 import {toast} from "react-toastify";
-import * as StudentService from "../service/StudentService"
-import {save} from "../service/GroupAccountService";
-import images from "../img/Jude-Bellingham-Real-01.jpg"
-import {LazyLoadImage} from 'react-lazy-load-image-component';
-import {storage} from "../config/firebaseConfig";
+import * as StudentService from "../../service/StudentService"
+import {save} from "../../service/GroupAccountService";
+ import {LazyLoadImage} from 'react-lazy-load-image-component';
+import {storage} from "../../config/firebaseConfig";
 import * as Yup from "yup"
+import React, {useEffect, useState} from "react";
+import {Field, Form, Formik, ErrorMessage, useFormikContext} from "formik";
 
 export function ResgiterGroupStudent() {
     const [listAdd, setListAdd] = useState([]);
@@ -83,7 +82,7 @@ export function ResgiterGroupStudent() {
     return (
         <>
             {/*===================Danh Sach Sinh Vien=============*/}
-            <div className="container">
+            <div className="container containerTan">
                 <h2 className="mt-4 mb-4">Đăng ký nhóm sinh viên</h2>
                 {/*====================search==============*/}
                 <div className="container-fluid">
@@ -114,16 +113,16 @@ export function ResgiterGroupStudent() {
                         : <>
                             {students.map((s, index) => (
                                 <div className="col-md-3 mb-4" key={index}>
-                                    <div className="card">
+                                    <div className="card cardTan">
                                         <LazyLoadImage
                                             effect="blur" src={avatarUrls[index]} className="card-img-top img-fluid"
                                             alt={`Sinh viên ${s.index}`} width="100%"
                                         />
                                         <div className="card-body white">
-                                            <h5 className="card-title student-name">{s.name}</h5>
-                                            <p className="card-text"><b> <i className="bi bi-code-square"></i> Mã sinh
+                                            <h5 className="card-title card-titleTan student-name">{s.name}</h5>
+                                            <p className="card-text card-textTan "><b> <i className="bi bi-code-square"></i> Mã sinh
                                                 viên:</b> {"MSV".concat(s.studentId.toString().padStart(4, "0"))}</p>
-                                            <p className="card-text"><b><i className="bi bi-window-sidebar"></i> Ngày
+                                            <p className="card-text card-textTan"><b><i className="bi bi-window-sidebar"></i> Ngày
                                                 sinh:</b> {s.dateOfBirth}</p>
                                         </div>
                                         <div className="card-footer" style={{height: "90px"}}>
@@ -201,20 +200,20 @@ export function ResgiterGroupStudent() {
             </div>
             {/*===================Danh Sach Thanh Vien=============*/}
 
-            <h2 className="title" style={{color: "#e9f1e8"}}>Danh sách thành viên nhóm</h2>
+            <h2 className="title titleTan" style={{color: "#e9f1e8"}}>Danh sách thành viên nhóm</h2>
             <div className="container">
                 <div className="row">
                     <div className="col-12">
                         <table className="table table-bordered">
                             <thead className="table">
-                            <tr className="row-scope">
+                            <tr className="row-scope row-scopeTan">
                                 <td style={{backgroundColor: "#b9daa4"}}>Mã sinh viên</td>
                                 <td style={{backgroundColor: "#b9daa4"}}>Tên sinh viên</td>
                                 <td style={{backgroundColor: "#b9daa4"}}>Ngày sinh</td>
                                 <td style={{backgroundColor: "#b9daa4"}}>Chọn</td>
                             </tr>
                             </thead>
-                            <tbody className="row-tbody">
+                            <tbody className="row-tbody row-tbodyTan">
                             {listAdd.map(student => (
                                 <tr key={student.studentId}>
                                     <td>{student.studentId}</td>
@@ -253,7 +252,7 @@ export function ResgiterGroupStudent() {
                             .max(255, "Tên không vượt quá 255 ký tự")
                             .matches(/^[a-zA-Z\s]+$/, "Tên nhóm không được chứa ký tự đặc biệt")
 
-                })
+                    })
                 })}
                 >
                     <Form>
@@ -264,12 +263,12 @@ export function ResgiterGroupStudent() {
 
                             </div>
 
-                                <ErrorMessage name="groupAccount.name" className="text-danger" component="p"/>
+                            <ErrorMessage name="groupAccount.name" className="text-danger" component="p"/>
 
-                                <Field type="text" className="form-control" placeholder="Nhập vào tên nhóm"
-                                       name="groupAccount.name"
-                                       aria-label="Username"
-                                       aria-describedby="basic-addon1"/>
+                            <Field type="text" className="form-control" placeholder="Nhập vào tên nhóm"
+                                   name="groupAccount.name"
+                                   aria-label="Username"
+                                   aria-describedby="basic-addon1"/>
 
 
 

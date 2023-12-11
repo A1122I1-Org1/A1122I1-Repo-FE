@@ -27,16 +27,15 @@ export const findAllWithTeacher = async (pageNumber, searchKey) => {
 
 export const save = async (value) => {
     try {
-        await axios.post(URL + "create-student", value)
+        await axios.post(BASE_URL+ "create-student", value)
     } catch (e) {
         console.log(e)
     }
 }
 
-export const findById = async () => {
+export const findById = async (studentId) => {
     try {
-        const studentId = 9;
-        const res = await axios.get(URL + "get-student-by-studentId/" + studentId);
+        const res = await axios.get(BASE_URL + "get-student-by-studentId/" + studentId);
         return res.data;
     } catch (e) {
         console.log(e);
@@ -45,7 +44,7 @@ export const findById = async () => {
 
 export const update = async (item) => {
     try {
-        const res = await axios.put(URL + "edit-student" , item);
+        const res = await axios.put(BASE_URL + "edit-student" , item);
         return res.data;
     } catch (e) {
         console.log(e);

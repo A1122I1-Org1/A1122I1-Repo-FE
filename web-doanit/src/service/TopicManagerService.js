@@ -1,5 +1,5 @@
 
-const API_BASE_URL = 'http://localhost:8080/api/public/topic-manager';
+const API_BASE_URL = '/api/public/topic-manager';
 
 const TopicManagerService = {
     fetchTopics: async (page = 0, size = 20) => {

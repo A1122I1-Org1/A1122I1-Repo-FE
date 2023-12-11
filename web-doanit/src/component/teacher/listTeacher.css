@@ -1,7 +1,8 @@
 body{
     font-family: Helvetica, serif ;
 }
-.card {
+huy{}
+.huy.card {
     display: inline-block;
     margin: 10px 1%;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -10,16 +11,16 @@ body{
     border-radius: 5px;
 }
 
-.card:hover {
+.huy.card:hover {
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
 }
 
-.card-title {
+.huy.card-title {
     text-align: center;
     color: #87AA74;
 }
 
-.card-text{
+.huy.card-text{
     text-align: left;
     white-space: nowrap;
     overflow: hidden;
@@ -27,12 +28,12 @@ body{
     font-size: 14px;
 }
 
-.card img {
+.huy.card img {
     max-width: 100%;
     height: auto;
     border-radius: 5px;
 }
-.title {
+.huy.title {
     text-align: center;
     margin-bottom: 15px;
     justify-content: center;
@@ -42,20 +43,17 @@ body{
     color: white;
 }
 
-.link{
-    font-size: 30px;
-}
-
-.action{
+.huy.action{
     white-space: nowrap;
     margin-top: 5px;
     margin-bottom: 5px;
 }
-[class*="col-"] {
+.huy [class*="col-"] {
     width: 100%;
     justify-content: center !important;
     text-align: center;
-}@media only screen and (min-width: 600px) {
+}
+@media only screen and (min-width: 600px) {
     /* For tablets: */
     .col-m-1 {
         width: 8.33%;
@@ -65,7 +63,7 @@ body{
         width: 16.66%;
     }
 
-    .col-m-3 {
+    .huy.col-m-3 {
         width: 23%;
     }
 
@@ -157,26 +155,26 @@ body{
     }
 }
 
-.btns-primary {
+.huy.btns-primary {
     color: #fff;
     background-color: #87AA74;
     border: 1px solid rgba(135, 170, 116, 0.5);
 }
 
-.btns-primary:hover {
+.huy.btns-primary:hover {
     color: #fff;
     background-color: #87AA74;
     border: 1px solid rgba(135, 170, 116, 0.5);
 }
 
-.btn1{
+.huy.btn1{
     border-radius: 5px;
     border: 1px solid rgba(135, 170, 116, 0.5);
     height: 31px;
     background-color: #87AA74;
     color: white;
 }
-.btn2{
+.huy.btn2{
     border-radius: 5px;
     border: 1px solid rgba(135, 170, 116, 0.5);
 }
@@ -187,11 +185,10 @@ body{
     width: 30px;
     height: 30px;
 }
-button.search-icon:hover svg{
+.button.search-icon:hover svg{
     height: 35px;
     width: 35px;
 }
-
 button.responsive-icon,
 button.responsive-icon-add,
 button.responsive-button-search{
@@ -209,7 +206,7 @@ button.responsive-icon-search{
     height: 10px;
 }
 
-.get-started-btn {
+.huy.get-started-btn {
     margin-left: 22px;
     background: #87AA74;
     color: #fff;
@@ -221,28 +218,18 @@ button.responsive-icon-search{
     display: inline-block;
 }
 
-.get-started-btn:hover {
+.huy.get-started-btn:hover {
     background: #3ac162;
     color: #fff;
 }
 
 @media (max-width: 768px) {
-    .get-started-btn {
+    .huy.get-started-btn {
         margin: 0 15px 0 0;
         padding: 6px 18px;
     }
 }
-.img{
+.huy.img{
     width: 350px;
     height: 350px;
 }
-
-.card-img-top {
-    object-fit: cover;
-    height: auto;
-    text-align: center;
-}
-
-
-
-

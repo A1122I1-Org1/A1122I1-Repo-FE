@@ -8,7 +8,7 @@ import * as DegreeService from "../../service/DegreeService";
 import "./createUpdateTeacher.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {storage} from "../../config/firebaseConfig";
-import {useNavigate, useParams} from "react-router-dom";
+import {NavLink, useNavigate, useParams} from "react-router-dom";
 
 export const UpdateTeacher = () => {
     const navigate = useNavigate();
@@ -17,9 +17,6 @@ export const UpdateTeacher = () => {
     const [avatar, setAvatar] = useState(null);
     const [avatarUrl, setAvatarUrl] = useState('');
     const [errorData, setErrorData] = useState({});
-    const [isPhoneTouched, setIsPhoneTouched] = useState(true);
-    const [isEmailTouched, setIsEmailTouched] = useState(true);
-    const [isUploadImage, setIsUploadImage] = useState(true);
     const [teacher, setTeacher] = useState({
         name: "",
         address: "",
@@ -33,6 +30,12 @@ export const UpdateTeacher = () => {
         facultyId: 1
     });
 
+    const [isPhoneTouched, setIsPhoneTouched] = useState(true);
+    const [isEmailTouched, setIsEmailTouched] = useState(true);
+    const [isAgeTouched, setIsAgeTouched] = useState(true);
+    const [isNameTouched, setIsNameTouched] = useState(true);
+    const [isUploadImage, setIsUploadImage] = useState(true);
+
     const {id} = useParams();
 
 
@@ -44,6 +47,13 @@ export const UpdateTeacher = () => {
         setIsEmailTouched(false);
     };
 
+    const handleAgeTouched = () => {
+        setIsAgeTouched(false);
+    };
+
+    const handleNameTouched = () => {
+        setIsNameTouched(false);
+    };
 
     useEffect(() => {
         const fetchData = async () => {
@@ -174,7 +184,7 @@ export const UpdateTeacher = () => {
                                 />
                                 <img
                                     className="w-100"
-                                    style={{marginTop:"8px"}}
+                                    style={{marginTop:"18px"}}
                                     alt="avatar"
                                     src={avatarUrl || (avatar ? URL.createObjectURL(avatar) : 'default-avatar.png')}
                                 />
@@ -183,13 +193,13 @@ export const UpdateTeacher = () => {
                                         <span style={{color: "red"}}>{errorData.errorFileFormat}</span>
                                     </div>
                                 )}
-                                <label className="label-b">Chọn ảnh đại diện(<span style={{color:"red"}}>*</span>):</label>
+                                <label className="label-b label-form">Chọn ảnh đại diện(<span style={{color:"red"}}>*</span>):</label>
                                 <label htmlFor="avatar" className="label-custom">Chọn tệp</label>
 
                             </div>
                             <div className="col-4">
                                 <div className="form-group">
-                                    <label htmlFor="name" className="label-input">Tên Giáo Viên (<span style={{color:"red"}}>*</span>):</label>
+                                    <label htmlFor="name" className="label-input label-form">Tên Giáo Viên (<span style={{color:"red"}}>*</span>):</label>
                                     <Field name="name" type="text" className="form-control" placeholder="Name"/>
                                     <ErrorMessage name="name" component="span" className="text-danger"/>
                                     {errorData.errorNameSpecialCharacter && (
@@ -206,7 +216,7 @@ export const UpdateTeacher = () => {
                                     )}
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="dateOfBirth" className="label-input-a">Ngày Sinh (<span style={{color:"red"}}>*</span>):</label>
+                                    <label htmlFor="dateOfBirth" className="label-input-a label-form">Ngày Sinh (<span style={{color:"red"}}>*</span>):</label>
                                     <Field name="dateOfBirth" type="date" className="form-control"/>
                                     {errorData.errorDateMin && (
                                         <div>
@@ -221,12 +231,12 @@ export const UpdateTeacher = () => {
                                     )}
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="address" className="label-input-a">Địa Chỉ (<span style={{color:"red"}}>*</span>):</label>
+                                    <label htmlFor="address" className="label-input-a label-form">Địa Chỉ (<span style={{color:"red"}}>*</span>):</label>
                                     <Field name="address" type="text" className="form-control" placeholder="Address" >
                                         {({field, form, meta}) => (
                                             <div>
                                                 <textarea className="form-control" style={{height:"125px"}}
-                                                       type="text" {...field} placeholder="Phone"/>
+                                                          type="text" {...field} placeholder="Phone"/>
 
                                             </div>
                                         )}
@@ -235,7 +245,7 @@ export const UpdateTeacher = () => {
                                     <ErrorMessage name="address" component="span" text className="text-danger"/>
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="phone" className="label-input-a">Số Điện Thoại (<span style={{color:"red"}}>*</span>):</label>
+                                    <label htmlFor="phone" className="label-input-a label-form">Số Điện Thoại (<span style={{color:"red"}}>*</span>):</label>
                                     <Field name="phone" type="text" className="form-control" placeholder="Phone">
                                         {({field, form, meta}) => (
                                             <div>
@@ -255,7 +265,7 @@ export const UpdateTeacher = () => {
                             </div>
                             <div className="col-4 ">
                                 <div className="form-group">
-                                    <label htmlFor="email" className="label-input">Email (<span style={{color:"red"}}>*</span>):</label>
+                                    <label htmlFor="email" className="label-input label-form">Email (<span style={{color:"red"}}>*</span>):</label>
                                     <Field name="email" type="email" className="form-control" placeholder="Email">
                                         {({field, form, meta}) => (
                                             <div>
@@ -274,7 +284,7 @@ export const UpdateTeacher = () => {
                                     )}
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="facultyId" className="label-input-a">Faculty</label>
+                                    <label htmlFor="facultyId" className="label-input-a label-form">Faculty</label>
                                     <Field name="facultyId" as="select" className="form-control">
                                         {faculties.map((faculty) => (
                                             <option key={faculty.id} value={faculty.id}>
@@ -285,7 +295,7 @@ export const UpdateTeacher = () => {
                                     <ErrorMessage name="facultyId" component="span" className="text-danger"/>
                                 </div>
                                 <div className="form-group">
-                                    <label htmlFor="degreeId" className="label-input-a">Học Vị (<span style={{color:"red"}}>*</span>):</label>
+                                    <label htmlFor="degreeId" className="label-input-a label-form">Học Vị (<span style={{color:"red"}}>*</span>):</label>
                                     <Field name="degreeId" as="select" className="form-control">
                                         {degrees.map((degree) => (
                                             <option key={degree.id} value={degree.id}>
@@ -297,7 +307,7 @@ export const UpdateTeacher = () => {
                                 </div>
 
                                 <div className="form-group">
-                                    <label htmlFor="gender" className="label-input-a">Giới Tính (<span style={{color:"red"}}>*</span>):</label>
+                                    <label htmlFor="gender" className="label-input-a label-form">Giới Tính (<span style={{color:"red"}}>*</span>):</label>
                                     <Field name="gender" as="select" className="form-control">
                                         <option value={true}>Male</option>
                                         <option value={false}>Female</option>
@@ -308,9 +318,9 @@ export const UpdateTeacher = () => {
                                     <button type="submit" className="btn btn-outline-success me-2  mt-2">
                                         Lưu
                                     </button>
-                                    <button type="reset" className="btn btn-outline-dark  mt-2">
+                                    <NavLink to={"/teachers-list"} type="button" className="btn btn-outline-dark  mt-2">
                                         Hủy
-                                    </button>
+                                    </NavLink>
                                 </div>
                             </div>
                         </div>

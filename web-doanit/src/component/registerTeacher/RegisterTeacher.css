@@ -1,69 +1,63 @@
-body {
+.register-teacher body {
     font-family: "Helvetica", serif;
 }
-.title{
+.register-teacher .title{
     text-align: center;
     color: #87AA74;
     margin: 35px;
 }
-.modal-title{
+.register-teacher .modal-title{
     text-align: center;
     color: #87AA74;
 }
-.container{
+.register-teacher .container{
     text-align: center;
 }
-.row-scope{
+.register-teacher .row-scope{
     text-align: center;
 }
-.row-scope .title-table{
+.register-teacher .row-scope .title-table{
     background-color: #b9daa4;
-
 }
-.row-tbody{
+.register-teacher .row-tbody{
     text-align: center;
 }
-.row-name{
+.register-teacher .row-name{
     text-align: left;
     width: 300px;
 }
-.table {
+.register-teacher .table {
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
 }
-.justify-content-center{
+.register-teacher .justify-content-center{
     display: inline-block;
 }
-
-.a-custom{
+.register-teacher .a-custom{
     pointer-events: none;
 }
-.avatar {
+.register-teacher .avatar {
     width: 100%;
     height: auto;
     border: 1px solid #ccc;
 }
-
-.avatar-container {
+.register-teacher .avatar-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100%;
-
 }
-
-label{
+.register-teacher label{
     font-weight: bold;
     text-align: left;
 }
-h2{
+.register-teacher h2{
     text-align: center;
 }
-.form-group{
+.register-teacher .form-group{
     margin: 10px;
 }
-
-.form-group label{
+.register-teacher .form-group label{
     float: left;
     margin: 5px;
 }

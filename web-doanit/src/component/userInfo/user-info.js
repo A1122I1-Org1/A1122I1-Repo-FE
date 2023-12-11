@@ -26,6 +26,7 @@ export const UserInfo = () => {
     };
     const fetchData = async () => {
         try {
+            // debugger;
             const res = await UserService.detailInfo();
             const roles = res.roles.map((item) => item.role.roleName);
             setRoleNames(roles);
@@ -64,7 +65,6 @@ export const UserInfo = () => {
     return (
         <div className="user-info">
             <div className="container">
-                <button className="btn btn-outline-success" onClick={onClickLogout}>Đăng xuất</button>
                 <h2 className="title">THÔNG TIN CHI TIẾT</h2>
                 {isLoading ? (
                     <div>Đang tải dữ liệu người dùng...</div>
@@ -87,15 +87,16 @@ export const UserInfo = () => {
                                                value={user.gender === 1 ? "Nam" : "Nữ"}/>
                                 <UserInfoInput label="Số điện thoại" name="phone" value={user.phone}/>
                                 {
-                                    roleNames.includes("ROLE_STUDENT") ? (
-                                        <>
-                                            <UserInfoInput label="Khoa" name="faculty" value={user.grade.faculty.name}/>
-                                            <UserInfoInput label="Lớp" name="grade" value={user.grade.name}/>
-                                        </>
-                                    ) : (
+                                    roleNames.includes("ROLE_TEACHER") ? (
+
                                         <>
                                             <UserInfoInput label="Khoa" name="faculty" value={user.faculty.name}/>
                                             <UserInfoInput label="Học vị" name="degree" value={user.degree.name}/>
+                                        </>
+                                    ) : (
+                                        <>
+                                            <UserInfoInput label="Khoa" name="faculty" value={user.grade.faculty.name}/>
+                                            <UserInfoInput label="Lớp" name="grade" value={user.grade.name}/>
                                         </>
                                     )
                                 }

@@ -19,6 +19,7 @@ export const findByIdTeacher = async (id) => {
 }
 export const registerTeacher = async (teacherId) => {
     try {
+        debugger;
         await axios.post('/api/registerTeacher/register/' + teacherId);
     } catch (e) {
         throw e;

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const URL_API = "http://localhost:8080/api/teachers";
+const URL_API = "/api/teachers";
 
 export const createTeacher = async (teacherData) => {
     try {
@@ -15,7 +15,7 @@ export const createTeacher = async (teacherData) => {
 export const getTeacherById = async (teacherId) => {
     const response = await axios.get(URL_API + "/getTeacherById/" + teacherId);
     return response.data;
-    ;
+
 
 }
 export const updateTeacher = async (item) => {

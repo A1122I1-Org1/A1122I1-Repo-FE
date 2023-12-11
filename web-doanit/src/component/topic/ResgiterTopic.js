@@ -1,12 +1,11 @@
-import {useNavigate} from "react-router-dom"
+
 import {ErrorMessage, Field, Form, Formik} from "formik";
 import {useEffect, useState} from "react";
-import '../css/InforTopicRegister.css'
+import "../topic/InforTopicRegister.css";
 import * as Yup from "yup"
 import {toast} from "react-toastify";
-import {save} from "../service/InforTopicResgiterService";
-import {string} from "yup";
-import {storage} from "../config/firebaseConfig";
+import {save} from "../../service/InforTopicResgiterService";
+import {storage} from "../../config/firebaseConfig";
 
 
 export function ResgiterTopic() {
@@ -72,7 +71,7 @@ export function ResgiterTopic() {
                 onSubmit={async values => {
                     await handleMotaUpload();
                     await handleAvatarUpload();
-                   values.topic.image= avatar.name;
+                    values.topic.image= avatar.name;
                     values.topic.content = moTa.name;
                     save(values);
                     toast('🦄 Resgiter topic successfully!!!!');
@@ -98,8 +97,8 @@ export function ResgiterTopic() {
                 <>
                     {/*Giao dien*/}
 
-                    <div className="container text-center">
-                        <h2>ĐĂNG KÝ ĐỀ TÀI</h2>
+                    <div className="container ">
+                        <h2 className="h2Tan">ĐĂNG KÝ ĐỀ TÀI</h2>
                         <div className="container-fluid">
                             <div className="row">
                                 <div className="col-8">
@@ -118,10 +117,10 @@ export function ResgiterTopic() {
                             </div>
                         </div>
                         <div className="row">
-                            <div className="col-4 col-left">
+                            <div className="col-4 col-left col-leftTan">
                                 <div>
-                                    <h5>Đăng ký đề tài</h5>
-                                    <Form className="form form-register">
+                                    <h5 className="h5Tan">Đăng ký đề tài</h5>
+                                    <Form className="form form-register form-registerTan">
                                         <div hidden>
                                             <Field name="inforTopicRegisterId" value="1"/>
 
@@ -167,12 +166,12 @@ export function ResgiterTopic() {
                                     </Form>
                                 </div>
                             </div>
-                            <div className="col-8 col-right">
+                            <div className="col-8 col-right col-rightTan ">
                                 <div>
-                                    <h5>Danh sách đề tài</h5>
+                                    <h5 className="h5Tan">Danh sách đề tài</h5>
                                     <table className="table">
                                         <thead>
-                                        <tr className="table-heading">
+                                        <tr className="table-heading table-headingTan">
                                             <th>STT</th>
                                             <th>Tên đề tài</th>
                                             <th>Chi tiết</th>
@@ -213,7 +212,7 @@ export function ResgiterTopic() {
                                     <br/>
                                     <div className="row">
                                         <div className="col-5"></div>
-                                        <div className="col-7 pagination-container">
+                                        <div className="col-7 pagination-containerTan">
                                             <nav aria-label="Page navigation example">
                                                 <ul className="pagination">
                                                     <li className="page-item">

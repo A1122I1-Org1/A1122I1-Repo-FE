@@ -4,6 +4,7 @@ import * as ListRegisterTeacherService from "../../service/RegisterTeacherServic
 import {toast} from "react-toastify";
 import {Modal, Button} from 'react-bootstrap';
 import {storage} from "../../config/firebaseConfig";
+import {ro} from "date-fns/locale";
 
 export function RegisterTeacher(props) {
     const [pageNumber, setPageNumber] = useState(0);
@@ -14,6 +15,7 @@ export function RegisterTeacher(props) {
     const [inforTeacher, setInforTeacher] = useState({});
     const [showModal, setShowModal] = useState(false);
     const [avatarUrl, setAvatarUrl] = useState('');
+    const roles=localStorage.getItem("roles");
     const getAvatarFromFirebase = async (avatarName) => {
         if (!avatarName) return null;
         try {
@@ -78,6 +80,7 @@ export function RegisterTeacher(props) {
     };
     return (
         <>
+            <div className="register-teacher">
             <div className="container">
                 <h2 className="title">ĐĂNG KÝ GIÁO VIÊN HƯỚNG DẪN</h2>
                 <div className="col-12">
@@ -230,16 +233,22 @@ export function RegisterTeacher(props) {
                             </div>
                         </div>
                     </div>
+
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="outline-secondary" onClick={handleClose}>
                         Đóng
                     </Button>
-                    <Button variant="outline-success" onClick={() => register(inforTeacher.teacherId)}>
-                        Đăng kí
-                    </Button>
+                    {
+                        roles.includes("ROLE_GROUP_LEADER") &&
+                        <Button variant="outline-success" onClick={() => register(inforTeacher.teacherId)}>
+                            Đăng kí
+                        </Button>
+                    }
+
                 </Modal.Footer>
             </Modal>
+            </div>
         </>
     )
 }

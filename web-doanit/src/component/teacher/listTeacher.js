@@ -80,11 +80,11 @@ export const ListTeacher = () => {
 
 
     return (<>
-            <div className="title">
+            <div className="huy title">
                 <h1>Quản lý giáo viên</h1>
             </div>
-            <div className="d-flex justify-content-around" style={{marginTop: '25px', marginBottom: '12px'}}>
-                <NavLink to={"/create"} type="button" className="get-started-btn" style={{border: '0'}}>
+            <div className="huy d-flex justify-content-around" style={{marginTop: '25px', marginBottom: '12px'}}>
+                <NavLink to={"/create-teacher"} type="button" className="huy get-started-btn" style={{border: '0'}}>
                     Thêm mới giáo viên
                 </NavLink>
                 <div className="d-flex">
@@ -96,36 +96,40 @@ export const ListTeacher = () => {
                         placeholder="Tìm kiếm giáo viên"
                         style={{borderRadius: '30px', border: '1px solid #d6c9bb', height: '37px', width: '300px'}}
                     />
-                    <button type="button" className="get-started-btn" style={{border: '0'}} onClick={handleSearch}>
+                    <button type="button" className="huy get-started-btn" style={{border: '0'}} onClick={handleSearch}>
                         Tìm kiếm
                     </button>
                 </div>
             </div>
             <div className='container'>
                 <div className="row" style={{marginTop: '20px'}}>
-                    {teachers.length === 0 ? <h1 className='text-center'>Không có dữ liệu</h1> : <>
+                    {teachers.length === 0 ? <h1 className='huy text-center'>Không có dữ liệu</h1> : <>
                         {teachers.map((t, index) => (
-                            <div className="card col-m-3" key={t}>
+                            <div className="huy card col-m-3" key={t}>
                                 <LazyLoadImage
-                                    effect="blur" src={avatarUrls[index]} className="fixed-size card-img-top"
+                                    effect="blur" src={avatarUrls[index]} className="huy img"
                                     alt={`Giảng viên ${t.avatar}`}
                                 />
                                 <hr/>
-                                <div className='card-body'>
-                                    <h5 className="card-title">{t.teacherName}</h5>
-                                    <p className="card-text"><i className="bi bi-code-square"></i> Mã giảng viên
+                                <div className='huy card-body'>
+                                    <h5 className="huy card-title">{t.teacherName}</h5>
+                                    <p className="huy card-text"><i className="bi bi-code-square"></i> Mã giảng viên
                                         : {"MGV-".concat(t.teacherId.toString())}</p>
-                                    <p className="card-text"><i className="bi bi-envelope-at"></i> Email
+                                    <p className="huy card-text"><i className="bi bi-envelope-at"></i> Email
                                         : {t.email.length > 22 ? `${t.email.substring(0, 22)}...` : t.email}</p>
-                                    <p className="card-text"><i className="bi bi-telephone"></i> Sdt : {t.phone}</p>
-                                    <p className="card-text"><i className="bi bi-signpost-2"></i> Khoa: {t.facultyName}
+                                    <p className="huy card-text"><i className="bi bi-telephone"></i> Sdt : {t.phone}</p>
+                                    <p className="huy card-text"><i className="bi bi-signpost-2"></i> Khoa: {t.facultyName}
                                     </p>
                                 </div>
                                 <hr/>
-                                <div className="action" style={{float: 'right'}}>
-
-                                    <button className="btn btn-success rounded-circle"><i className="bi bi-pencil-square"></i></button>
-                                    <button className="btn btn-danger rounded-circle"
+                                <div className="huy action" style={{float: 'right'}}>
+                                    <NavLink to={`/update-teacher/${t.teacherId}`}>
+                                        <button className="huy btn btn-success rounded-circle">
+                                            <i className="bi bi-pencil-square"></i>
+                                        </button>
+                                    </NavLink>
+                                    {/*<button className="huy btn btn-success rounded-circle"><i className="bi bi-pencil-square"></i></button>*/}
+                                    <button className="huy btn btn-danger rounded-circle"
                                             onClick={() => showDeleteModal(t.teacherId)}><i className="bi bi-trash"></i>
                                     </button>
                                 </div>
@@ -142,17 +146,13 @@ export const ListTeacher = () => {
                         <PaginationNav pageNumber={pageNumber}
                                        totalPages={totalPages}
                                        setPageNumber={setPageNumber}/>
-
                     </div>
                 </div>
             </div>
 
             <DeleteConfirmation showModal={displayConfirmationModal} confirmModal={submitDelete}
                                 hideModal={hideConfirmationModal} id={delId} message={deleteMessage}/>
-
-
         </>
-
     )
 }
 
